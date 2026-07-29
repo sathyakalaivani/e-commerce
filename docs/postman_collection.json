@@ -1,0 +1,264 @@
+{
+  "info": {
+    "name": "ShopMERN API",
+    "description": "Full REST API collection for the ShopMERN e-commerce backend.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:5000/api" },
+    { "key": "token", "value": "" },
+    { "key": "productId", "value": "" },
+    { "key": "categoryId", "value": "" },
+    { "key": "orderId", "value": "" }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [{ "key": "token", "value": "{{token}}", "type": "string" }]
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"Test User\",\n  \"email\": \"test@example.com\",\n  \"password\": \"Test@1234\"\n}" },
+            "url": "{{baseUrl}}/auth/register"
+          }
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"email\": \"customer@shopmern.com\",\n  \"password\": \"Customer@123\"\n}" },
+            "url": "{{baseUrl}}/auth/login"
+          }
+        },
+        {
+          "name": "Logout",
+          "request": { "method": "POST", "url": "{{baseUrl}}/auth/logout" }
+        },
+        {
+          "name": "Forgot Password",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"email\": \"customer@shopmern.com\"\n}" },
+            "url": "{{baseUrl}}/auth/forgot-password"
+          }
+        },
+        {
+          "name": "Reset Password",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"password\": \"NewPass@123\"\n}" },
+            "url": "{{baseUrl}}/auth/reset-password/:token"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Products",
+      "item": [
+        { "name": "Get All Products", "request": { "method": "GET", "url": "{{baseUrl}}/products?page=1&limit=12" } },
+        { "name": "Get Product By ID", "request": { "method": "GET", "url": "{{baseUrl}}/products/{{productId}}" } },
+        { "name": "Featured Products", "request": { "method": "GET", "url": "{{baseUrl}}/products/featured/list" } },
+        { "name": "New Arrivals", "request": { "method": "GET", "url": "{{baseUrl}}/products/new-arrivals/list" } },
+        { "name": "Best Sellers", "request": { "method": "GET", "url": "{{baseUrl}}/products/best-sellers/list" } },
+        {
+          "name": "Create Product (admin)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"title\": \"Sample Product\",\n  \"description\": \"A great product\",\n  \"category\": \"{{categoryId}}\",\n  \"brand\": \"BrandX\",\n  \"price\": 999,\n  \"discountPrice\": 799,\n  \"stock\": 20,\n  \"featured\": true,\n  \"images\": []\n}" },
+            "url": "{{baseUrl}}/products"
+          }
+        },
+        {
+          "name": "Update Product (admin)",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"price\": 1099\n}" },
+            "url": "{{baseUrl}}/products/{{productId}}"
+          }
+        },
+        { "name": "Delete Product (admin)", "request": { "method": "DELETE", "url": "{{baseUrl}}/products/{{productId}}" } }
+      ]
+    },
+    {
+      "name": "Categories",
+      "item": [
+        { "name": "Get Categories", "request": { "method": "GET", "url": "{{baseUrl}}/categories" } },
+        { "name": "Get Category By ID", "request": { "method": "GET", "url": "{{baseUrl}}/categories/{{categoryId}}" } },
+        {
+          "name": "Create Category (admin)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"Toys\",\n  \"description\": \"Toys and games\"\n}" },
+            "url": "{{baseUrl}}/categories"
+          }
+        },
+        {
+          "name": "Update Category (admin)",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"description\": \"Updated description\"\n}" },
+            "url": "{{baseUrl}}/categories/{{categoryId}}"
+          }
+        },
+        { "name": "Delete Category (admin)", "request": { "method": "DELETE", "url": "{{baseUrl}}/categories/{{categoryId}}" } }
+      ]
+    },
+    {
+      "name": "Cart",
+      "item": [
+        { "name": "Get Cart", "request": { "method": "GET", "url": "{{baseUrl}}/cart" } },
+        {
+          "name": "Add To Cart",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"productId\": \"{{productId}}\",\n  \"quantity\": 1\n}" },
+            "url": "{{baseUrl}}/cart"
+          }
+        },
+        {
+          "name": "Update Cart Item",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"quantity\": 3\n}" },
+            "url": "{{baseUrl}}/cart/{{productId}}"
+          }
+        },
+        { "name": "Remove Cart Item", "request": { "method": "DELETE", "url": "{{baseUrl}}/cart/{{productId}}" } },
+        { "name": "Clear Cart", "request": { "method": "DELETE", "url": "{{baseUrl}}/cart/clear" } },
+        {
+          "name": "Apply Coupon",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"code\": \"SAVE10\"\n}" },
+            "url": "{{baseUrl}}/cart/coupon"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Wishlist",
+      "item": [
+        { "name": "Get Wishlist", "request": { "method": "GET", "url": "{{baseUrl}}/wishlist" } },
+        {
+          "name": "Add To Wishlist",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"productId\": \"{{productId}}\"\n}" },
+            "url": "{{baseUrl}}/wishlist"
+          }
+        },
+        { "name": "Remove From Wishlist", "request": { "method": "DELETE", "url": "{{baseUrl}}/wishlist/{{productId}}" } }
+      ]
+    },
+    {
+      "name": "Orders",
+      "item": [
+        { "name": "Create Payment Intent", "request": { "method": "POST", "url": "{{baseUrl}}/orders/create-payment-intent" } },
+        {
+          "name": "Create Order",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"shippingAddress\": {\n    \"fullName\": \"Test User\",\n    \"phone\": \"9876543210\",\n    \"line1\": \"123 Main St\",\n    \"city\": \"Chennai\",\n    \"state\": \"Tamil Nadu\",\n    \"postalCode\": \"600001\",\n    \"country\": \"India\"\n  },\n  \"paymentMethod\": \"cod\"\n}" },
+            "url": "{{baseUrl}}/orders"
+          }
+        },
+        { "name": "My Orders", "request": { "method": "GET", "url": "{{baseUrl}}/orders/my-orders" } },
+        { "name": "All Orders (admin)", "request": { "method": "GET", "url": "{{baseUrl}}/orders" } },
+        { "name": "Get Order By ID", "request": { "method": "GET", "url": "{{baseUrl}}/orders/{{orderId}}" } },
+        {
+          "name": "Update Order Status (admin)",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"status\": \"Shipped\",\n  \"note\": \"Dispatched from warehouse\"\n}" },
+            "url": "{{baseUrl}}/orders/{{orderId}}/status"
+          }
+        },
+        { "name": "Cancel Order", "request": { "method": "PUT", "url": "{{baseUrl}}/orders/{{orderId}}/cancel" } },
+        { "name": "Refund Order (admin)", "request": { "method": "PUT", "url": "{{baseUrl}}/orders/{{orderId}}/refund" } }
+      ]
+    },
+    {
+      "name": "Users",
+      "item": [
+        { "name": "Get Profile", "request": { "method": "GET", "url": "{{baseUrl}}/users/profile" } },
+        {
+          "name": "Update Profile",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"Updated Name\",\n  \"phone\": \"9999999999\"\n}" },
+            "url": "{{baseUrl}}/users/profile"
+          }
+        },
+        {
+          "name": "Change Password",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"currentPassword\": \"Customer@123\",\n  \"newPassword\": \"NewPass@123\"\n}" },
+            "url": "{{baseUrl}}/users/change-password"
+          }
+        },
+        {
+          "name": "Add Address",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"label\": \"Home\",\n  \"fullName\": \"Test User\",\n  \"phone\": \"9876543210\",\n  \"line1\": \"123 Main St\",\n  \"city\": \"Chennai\",\n  \"state\": \"Tamil Nadu\",\n  \"postalCode\": \"600001\",\n  \"country\": \"India\",\n  \"isDefault\": true\n}" },
+            "url": "{{baseUrl}}/users/addresses"
+          }
+        },
+        { "name": "Get All Users (admin)", "request": { "method": "GET", "url": "{{baseUrl}}/users" } },
+        { "name": "Block/Unblock User (admin)", "request": { "method": "PUT", "url": "{{baseUrl}}/users/:id/block" } },
+        { "name": "Delete User (admin)", "request": { "method": "DELETE", "url": "{{baseUrl}}/users/:id" } }
+      ]
+    },
+    {
+      "name": "Reviews",
+      "item": [
+        {
+          "name": "Create Review",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"rating\": 5,\n  \"comment\": \"Excellent product!\"\n}" },
+            "url": "{{baseUrl}}/reviews/{{productId}}"
+          }
+        },
+        { "name": "Get All Reviews (admin)", "request": { "method": "GET", "url": "{{baseUrl}}/reviews" } },
+        { "name": "Delete Review", "request": { "method": "DELETE", "url": "{{baseUrl}}/reviews/{{productId}}/:reviewId" } }
+      ]
+    },
+    {
+      "name": "Admin",
+      "item": [
+        { "name": "Dashboard Stats", "request": { "method": "GET", "url": "{{baseUrl}}/admin/dashboard" } }
+      ]
+    },
+    {
+      "name": "Health",
+      "item": [
+        { "name": "Health Check", "request": { "method": "GET", "url": "{{baseUrl}}/health" } }
+      ]
+    }
+  ]
+}
