@@ -4,9 +4,9 @@ export default function About() {
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <Breadcrumbs items={[{ label: "About" }]} />
-      <h1 className="text-3xl font-bold mb-4">About ShopMERN</h1>
+      <h1 className="text-3xl font-bold mb-4">About StyleStreet</h1>
       <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
-        ShopMERN is a modern e-commerce destination built to make online shopping simple, fast, and enjoyable.
+        StyleStreet is a modern e-commerce destination built to make online shopping simple, fast, and enjoyable.
         We curate quality products across electronics, fashion, home essentials, books, and fitness — all in
         one place.
       </p>

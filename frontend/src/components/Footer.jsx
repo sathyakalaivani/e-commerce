@@ -17,7 +17,7 @@ export default function Footer() {
     <footer className="bg-gray-900 text-gray-300 mt-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid grid-cols-1 md:grid-cols-4 gap-8">
         <div>
-          <h3 className="text-xl font-extrabold text-white mb-3">ShopMERN</h3>
+          <h3 className="text-xl font-extrabold text-white mb-3">StyleStreet</h3>
           <p className="text-sm text-gray-400">Your one-stop shop for electronics, fashion, home essentials and more — delivered fast.</p>
           <div className="flex gap-3 mt-4 text-lg">
             <a href="#" aria-label="Facebook" className="hover:text-primary-400"><FiFacebook /></a>

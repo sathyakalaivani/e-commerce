@@ -77,7 +77,7 @@ export default function AdminCategories() {
       <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
         {categories.map((c) => (
           <div key={c._id} className="bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-xl p-4 flex gap-3">
-            <img src={c.image?.url || "https://via.placeholder.com/60"} alt={c.name} className="h-14 w-14 rounded-lg object-cover shrink-0" />
+            <img src={c.image?.url || "https://placehold.co/60"} alt={c.name} className="h-14 w-14 rounded-lg object-cover shrink-0" />
             <div className="flex-1 min-w-0">
               <p className="font-medium">{c.name}</p>
               <p className="text-xs text-gray-500 line-clamp-2">{c.description}</p>

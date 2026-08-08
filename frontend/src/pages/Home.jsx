@@ -99,7 +99,7 @@ export default function Home() {
             >
               <div className="aspect-square rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-700 mb-3">
                 <img
-                  src={cat.image?.url || "https://via.placeholder.com/200?text=" + cat.name}
+                  src={cat.image?.url || "https://placehold.co/200?text=" + cat.name}
                   alt={cat.name}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform"
                 />

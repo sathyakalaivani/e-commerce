@@ -31,7 +31,7 @@ export default function Cart() {
           {cart.items.map((item) => (
             <div key={item.product._id} className="flex gap-4 bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-xl p-4">
               <img
-                src={item.product.images?.[0]?.url || "https://via.placeholder.com/100"}
+                src={item.product.images?.[0]?.url || "https://placehold.co/100"}
                 alt={item.product.title}
                 className="h-24 w-24 rounded-lg object-cover shrink-0"
               />

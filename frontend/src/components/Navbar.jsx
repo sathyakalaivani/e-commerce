@@ -4,6 +4,7 @@ import { FiSearch, FiHeart, FiShoppingCart, FiUser, FiMenu, FiX, FiSun, FiMoon, 
 import { useAuth } from "../context/AuthContext.jsx";
 import { useCart } from "../context/CartContext.jsx";
 import { useTheme } from "../context/ThemeContext.jsx";
+import logo from "../assests/logo.jpg";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -23,10 +24,17 @@ export default function Navbar() {
     <header className="sticky top-0 z-50 bg-white/90 dark:bg-gray-900/90 backdrop-blur border-b border-gray-200 dark:border-gray-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 gap-4">
-          <Link to="/" className="text-xl font-extrabold text-primary-600 shrink-0">
-            Shop<span className="text-gray-900 dark:text-white">MERN</span>
-          </Link>
-
+             <Link to="/" className="flex items-center gap-2.5 shrink-0 group">
+                       <img
+                         src={logo}
+                         alt="StyleStreet"
+                         className="h-9 w-9 rounded-lg object-cover ring-1 ring-gray-200 dark:ring-gray-700 group-hover:ring-primary-400 transition-all"
+                       />
+                       <span className="text-xl font-extrabold tracking-tight leading-none">
+                         <span className="text-primary-600">Style</span>
+                         <span className="text-gray-900 dark:text-white">Street</span>
+                       </span>
+                     </Link>
           <form onSubmit={handleSearch} className="hidden md:flex flex-1 max-w-xl">
             <div className="relative w-full">
               <input

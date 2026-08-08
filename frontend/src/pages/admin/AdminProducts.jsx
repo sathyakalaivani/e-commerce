@@ -113,7 +113,7 @@ export default function AdminProducts() {
             ) : products.map((p) => (
               <tr key={p._id} className="border-b border-gray-50 dark:border-gray-700/50">
                 <td className="p-4 flex items-center gap-3">
-                  <img src={p.images?.[0]?.url || "https://via.placeholder.com/40"} className="h-10 w-10 rounded-lg object-cover" alt="" />
+                  <img src={p.images?.[0]?.url || "https://placehold.co/40"} className="h-10 w-10 rounded-lg object-cover" alt="" />
                   <span className="line-clamp-1 max-w-[200px]">{p.title}</span>
                 </td>
                 <td className="p-4">{p.category?.name || "-"}</td>

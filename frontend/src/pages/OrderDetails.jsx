@@ -74,7 +74,7 @@ export default function OrderDetails() {
             <div className="space-y-3">
               {order.items.map((item, i) => (
                 <div key={i} className="flex gap-3 items-center">
-                  <img src={item.image || "https://via.placeholder.com/60"} alt={item.title} className="h-14 w-14 rounded-lg object-cover" />
+                  <img src={item.image || "https://placehold.co/60"} alt={item.title} className="h-14 w-14 rounded-lg object-cover" />
                   <div className="flex-1">
                     <p className="text-sm font-medium line-clamp-1">{item.title}</p>
                     <p className="text-xs text-gray-500">Qty: {item.quantity} × ₹{item.price.toLocaleString("en-IN")}</p>

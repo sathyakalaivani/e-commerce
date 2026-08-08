@@ -31,7 +31,7 @@ export default function ProductCard({ product }) {
       <Link to={`/products/${product._id}`}>
         <div className="aspect-square overflow-hidden bg-gray-100 dark:bg-gray-700">
           <img
-            src={product.images?.[0]?.url || "https://via.placeholder.com/400x400?text=No+Image"}
+            src={product.images?.[0]?.url || "https://placehold.co/400x400?text=No+Image"}
             alt={product.title}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
             loading="lazy"

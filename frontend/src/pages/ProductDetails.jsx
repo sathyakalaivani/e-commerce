@@ -90,7 +90,7 @@ export default function ProductDetails() {
             onClick={() => setZoom(!zoom)}
           >
             <img
-              src={product.images?.[activeImage]?.url || "https://via.placeholder.com/600"}
+              src={product.images?.[activeImage]?.url || "https://placehold.co/600"}
               alt={product.title}
               className={`w-full h-full object-cover transition-transform duration-300 ${zoom ? "scale-150" : "scale-100"}`}
             />
