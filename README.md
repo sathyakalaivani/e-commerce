@@ -1,4 +1,4 @@
-# ShopMERN — Full-Stack MERN E-Commerce Platform
+# StyleStreet — Full-Stack MERN E-Commerce Platform
 
 A complete e-commerce web application built with **MongoDB, Express, React (Vite), and Node.js**, featuring a customer storefront and a separate admin dashboard.
 
