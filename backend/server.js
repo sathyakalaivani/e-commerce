@@ -26,12 +26,29 @@ const app = express();
 
 // Security & core middleware
 app.use(helmet({ crossOriginResourcePolicy: false }));
+
+const allowedOrigins = [
+  "http://localhost:5173",
+  "http://127.0.0.1:5173",
+  "https://e-commerce-alpha-b657.vercel.app",
+];
+
 app.use(
   cors({
-    origin: process.env.CLIENT_URL || "e-commerce-alpha-b657.vercel.app",
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+
+      console.error("Blocked CORS origin:", origin);
+      return callback(new Error(`CORS blocked for origin: ${origin}`));
+    },
     credentials: true,
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
+
 app.use(express.json({ limit: "10mb" })); // allows base64 image uploads
 app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 app.use(cookieParser());
